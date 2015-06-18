@@ -9,10 +9,18 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:text="Button 1"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Button 2"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Linear layout testout"
+        android:gravity="center"
+        android:textColor="#ffffff"/>
 </LinearLayout>
