@@ -1,20 +1,44 @@
 package com.test.herziger.myapplication;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    LinearLayout background;
+    Button btnGreen;
+    Button btnBlue;
 
     private final String TAG = "HERZIGERY";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onStart");
-        setContentView(R.layout.activity_main);
+
+        background = (LinearLayout) findViewById(R.id.linearLayout);
+        btnGreen = (Button) findViewById(R.id.btnGreen);
+        btnBlue = (Button) findViewById(R.id.btnBlue);
+
+        btnGreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+        public void onClick(View view) {
+                background.setBackgroundColor(Color.parseColor("#11dd11"));
+            }
+        });
+        btnBlue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                background.setBackgroundColor(Color.parseColor("#1111dd"));
+            }
+        });
     }
     @Override
     protected void onStart() {
