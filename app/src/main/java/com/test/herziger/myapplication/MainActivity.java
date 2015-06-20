@@ -13,14 +13,16 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends ActionBarActivity {
 
-    LinearLayout background;
-    Button btnGreen;
-    Button btnBlue;
+    private LinearLayout background;
+    private Button btnGreen;
+    private Button btnBlue;
 
+    // tag for logging:
     private final String TAG = "HERZIGERY";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.linear_layout);
         Log.d(TAG, "onStart");
 
         background = (LinearLayout) findViewById(R.id.linearLayout);
