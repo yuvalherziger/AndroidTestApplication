@@ -13,9 +13,7 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends ActionBarActivity {
 
-    private LinearLayout background;
-    private Button btnGreen;
-    private Button btnBlue;
+
 
     // tag for logging:
     private final String TAG = "HERZIGERY";
@@ -25,22 +23,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.linear_layout);
         Log.d(TAG, "onStart");
 
-        background = (LinearLayout) findViewById(R.id.linearLayout);
-        btnGreen = (Button) findViewById(R.id.btnGreen);
-        btnBlue = (Button) findViewById(R.id.btnBlue);
 
-        btnGreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-        public void onClick(View view) {
-                background.setBackgroundColor(Color.parseColor("#11dd11"));
-            }
-        });
-        btnBlue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                background.setBackgroundColor(Color.parseColor("#1111dd"));
-            }
-        });
     }
     @Override
     protected void onStart() {

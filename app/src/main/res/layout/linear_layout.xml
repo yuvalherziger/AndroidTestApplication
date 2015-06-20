@@ -4,25 +4,19 @@
     android:id="@+id/linearLayout"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Linear layout testout"
         android:gravity="center"
         android:textSize="20sp"/>
-    <Button
-        android:id="@+id/btnGreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Green"/>
-
-    <Button
-        android:id="@+id/btnBlue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Blue"/>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/fruh" />
 
 </LinearLayout>
