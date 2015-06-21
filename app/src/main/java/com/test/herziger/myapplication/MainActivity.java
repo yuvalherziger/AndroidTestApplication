@@ -7,16 +7,40 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import android.content.res.Resources;
 import android.util.TypedValue;
+
+import com.test.herziger.myapplication.controller.DataProvider;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
     // tag for logging:
     private final String TAG = "HerzigerMessages";
-    @Override
+    private List<TextView> textViewList = new ArrayList<>();
+
+    public void printData(List<HashMap<String, Object>> data) {
+        int i = 3;
+        for (HashMap<String, Object> node : data) {
+            TextView textView = new TextView(this);
+            textView.setId(i);
+            String strValue = (String)node.get("firstName") + " " + (String)node.get("lastName") + " (" + (String)node.get("email") + ")";
+            textView.setText(strValue);
+            textViewList.add(textView);
+            textView.setTextColor(Color.parseColor("#f1f1f1"));
+            textView.setBackgroundColor(Color.parseColor("#1111bb"));
+            i++;
+        }
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -46,15 +70,24 @@ public class MainActivity extends ActionBarActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
+        RelativeLayout.LayoutParams nodeDetails = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
 
         //ruls:
         userNameDetails.addRule(RelativeLayout.ABOVE, redButton.getId());
         userNameDetails.addRule(RelativeLayout.CENTER_HORIZONTAL);
         userNameDetails.addRule(RelativeLayout.CENTER_VERTICAL);
         userNameDetails.setMargins(50, 50, 50, 50);
+        //nodeDetails.addRule(RelativeLayout.BELOW);
+        //nodeDetails.addRule(RelativeLayout.CENTER_VERTICAL);
+        nodeDetails.setMargins(50, 50, 50, 50);
         // convert desired 'dp' value to 'px':
         Resources r = getResources();
         int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, r.getDisplayMetrics());
+
+
 
         userName.setWidth(px);
 
@@ -63,12 +96,35 @@ public class MainActivity extends ActionBarActivity {
         buttonDetails.addRule(RelativeLayout.CENTER_VERTICAL);
 
 
+        DataProvider dataProvider = new DataProvider();
+        this.printData(dataProvider.getData());
 
 
-        // use button in layout
+
+        // use views in layout
         homescreenLayout.addView(userName, userNameDetails);
         homescreenLayout.addView(redButton, buttonDetails);
-        setContentView(homescreenLayout);
+
+
+
+        LinearLayout lL = new LinearLayout(this);
+        lL.setOrientation(LinearLayout.VERTICAL);
+
+        int i = 0;
+        if (textViewList != null && textViewList.size() > 0) {
+            Log.i(TAG, "assigned design to first node");
+            //nodeDetails.addRule(RelativeLayout.ABOVE, redButton.getId());
+        }
+        for (TextView textView : textViewList) {
+            if (i != 0) {
+                Log.i(TAG, "assigned design to non-first node");
+                //nodeDetails.addRule(RelativeLayout.BELOW, textViewList.get(i - 1).getId());
+            }
+            lL.addView(textView, nodeDetails);
+            Log.i(TAG, "added node to layout");
+            i++;
+        }
+        setContentView(lL);
 
         Log.i(TAG, "onCreate");
     }
